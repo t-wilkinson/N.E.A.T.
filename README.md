@@ -11,8 +11,10 @@ NEAT is a evolutionary algorithm. I have seperated modules to best represent the
 
 ## /ball-fall
 This is a game I made to test the algorithm. It kind of works, but as the time spent running the program increases, it slows down. I believe this is an issue with the garbage collector not recognizing the previous populations can be removed, resulting in a large buildup of objects.
+
     python ball-fall/ball_fall.py
 
 ## /neat-5
 This is the 'best' version of my implementation of the NEAT algorithm.  Wait a couple seconds and the top topology for each species will be visualized using matplotlib showing weights, biases and activation functions. Pressing q(quit) will go to the next graph.
+
     python neat-5/main.py
