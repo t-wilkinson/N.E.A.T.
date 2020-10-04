@@ -2,11 +2,11 @@
 This was my second python project. It is an attempt at an implementation of the NEAT algorithm. A genetic algorithm which aims to produce the simplest possible topology of a graph structure for a given problem.
 `/neat-5` is the 'best' implementation, but still not great. It was ultimately too slow and I had trouble improving hyper-parameters.
 
-* [Hierarchy](#hierarchy)
+* [Layout](#layout)
 * [/ball-fall](#/ball-fall)
 * [/neat-5](#/neat-5)
 
-## Hierarchy
+## Layout
 NEAT is a evolutionary algorithm. I have seperated modules to best represent the hierarchy of the algorithm as follows:
 - Population
 - Species
