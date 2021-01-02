@@ -1,0 +1,4 @@
+numpy
+pyglet
+matplotlib
+pymunk

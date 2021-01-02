@@ -35,5 +35,3 @@ p = Population(2, 1, simulation)
 for species in p:
     species.sort(reverse=True)
     species[0].show()
-
-# p[0][0].show()
