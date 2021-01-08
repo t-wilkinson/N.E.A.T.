@@ -189,13 +189,12 @@ class Ball(GameObject):
     def __init__(self, genome):
         super().__init__(img=img['ball'], space=ball_space(space), scale=CIRCLE_SCALE)
         self.genome = genome
+        self.tar_speed = 0
         self.reset()
 
     def reset(self):
         self.space.body.position = (WIDTH // 2, HEIGHT // 2 - 10)
         self.space.body.velocity = (0, 0)
-
-        self.moves = [False, False]
 
     def update(self):
         self._update_()
@@ -215,14 +214,11 @@ class Ball(GameObject):
 
     def linearly_interpolate(self):
         ''' Accelerate ball up to target speed. '''
-        x_speed = ACC * TAR_SPEED + (1 - ACC) * self.space.body.velocity[0]
+        x_speed = ACC * self.tar_speed + (1 - ACC) * self.space.body.velocity[0]
         self.space.body.velocity = (x_speed, self.space.body.velocity[1])
 
     def decide(self):
         ''' Make a decision based on inputs. '''
-        # setup input layer
-        player = [self.x, self.y]
-
         # empty brick x positions
         empty_bricks = Brick.empty_columns
 
@@ -230,24 +226,9 @@ class Ball(GameObject):
         row_index = np.argmax(self.y - Brick.rows >= 0)
         brick_pos = empty_bricks[row_index]
 
-        inputs = player + brick_pos
-        left, right = self.genome.feed(inputs)
-        self.move(left, right)
-
-    def move(self, left, right):
-        global TAR_SPEED
-        if right > 0.5:
-            TAR_SPEED = MAX_SPEED
-
-            self.moves[1] = True
-
-        elif left > 0.5:
-            TAR_SPEED = -MAX_SPEED
-
-            self.moves[0] = True
-
-        else:
-            TAR_SPEED = 0
+        inputs = [self.x] + brick_pos
+        direction, = self.genome.feed(inputs)
+        self.tar_speed = MAX_SPEED if direction > 0.5 else -MAX_SPEED
 
     def off_screen(self):
         return self.y > HEIGHT + 32

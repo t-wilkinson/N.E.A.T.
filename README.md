@@ -1,6 +1,6 @@
 # Neuro Evolution of Augmenting Topologies (NEAT)
 This was my second python project. It is an attempt at an implementation of the NEAT algorithm. A genetic algorithm which aims to produce the simplest possible topology of a graph structure for a given problem.
-`/neat-5` is the 'best' implementation, but still not great. It was ultimately too slow and I had trouble improving hyper-parameters.
+`/neat-5` is my last iteration. It works and provides a nice visualization of each genome using matplotlib, showing the generation each node was formed, its activation function, etc.
 
 * [Layout](#layout)
 * [/ball-fall](#/ball-fall)

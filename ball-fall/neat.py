@@ -15,7 +15,9 @@ class NEAT:
         self.simulation = simulation
 
         self.populate(template)
-        for _ in range(config.GENERATIONS):
+        for i in range(config.GENERATIONS):
+            print('GENERATION: ', i)
+            print('POPULATIONS: ', [len(species) for species in self.Species])
             self.simulate()
             self.speciate()
             self.replicate()
@@ -77,23 +79,6 @@ class NEAT:
         for i, species in enumerate(self.Species):
             allowed_offspring = int(config.POPULATION * species_fitness[i] / total_fitness)
             offspring = [species[0]]
-            # kid_per_genome = int(allowed_offspring / len(species))
-            # for parent1 in species:
-            #     for _ in range(kid_per_genome):
-            #         if random.uniform(0, 1) < config.chance_mutate_no_crossover:
-            #             kid = parent1.clone()
-            #         else:
-            #             if random.uniform(0, 1) < config.chance_interspecies_mate:
-            #                 parent2 = random.choice(list(it.chain.from_iterable(self.Species)))
-            #             else:
-            #                 parent2 = random.choice(species)
-            #             kid = parent1.crossover(parent2)
-
-            #         kid.mutate(len(species))
-            #         offspring.append(kid)
-
-            # self.Species[i] = offspring
-
 
             for j in range(allowed_offspring):
                 for _ in range(2):

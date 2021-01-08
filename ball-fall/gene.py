@@ -40,7 +40,7 @@ class Node:
 
     ''' Activation functions. '''
     def sigmoid(self, X):
-        return 1 / (1 + np.exp(-4.9 * X))
+        return 1 / (1 + np.exp(-X))
 
     def tanh(self, X):
         return np.tanh(X)

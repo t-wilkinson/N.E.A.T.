@@ -38,7 +38,6 @@ class Game(pyglet.window.Window):
 
     def new_game(self, species):
         ''' Setup game and start game loop. '''
-        print('len(species) ==> ', len(species))
         for genome in species:
             ball = Ball(genome)
             ball.reset()
@@ -70,17 +69,12 @@ class Game(pyglet.window.Window):
         '''  Update game variables. '''
         # Update game objects
         Brick.update()
+
         for i, ball in enumerate(self.alive):
             ball.update()
             if ball.off_screen():
                 ball.time = time() - self.start_time
-
-                if ball.moves[0] and ball.moves[1]:
-                    ball.genome.fitness = ball.time
-                else:
-                    ball.genome.fitness = -1
-                    ball.genome.kill()
-
+                ball.genome.fitness = ball.time
                 self.alive.pop(i)
 
         if not self.alive:
@@ -103,5 +97,6 @@ class Game(pyglet.window.Window):
             pyglet.app.exit()
             exit()
 
-game = Game()
-NEAT(4, 2, game.new_game)
+if __name__ == '__main__':
+    game = Game()
+    NEAT(3, 1, game.new_game)
