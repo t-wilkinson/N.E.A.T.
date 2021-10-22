@@ -7,6 +7,7 @@ class _Node(list):
     Each node has an activation function
     and list of connected links.
     '''
+
     def __init__(self, innovation: int, layer: int):
         super().__init__()
         self.result = 0
@@ -62,6 +63,7 @@ class Node:
     '''
     Handles node creation.
     '''
+
     def __init__(self):
         self.count = 1
 
@@ -69,4 +71,3 @@ class Node:
         node = globals()[config.node_type](self.count, layer)
         self.count += 1
         return node
-
